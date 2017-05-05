@@ -14,16 +14,7 @@
     2.vue方法属性与冒号不能有空格与大括号必须有空格间隔; 等式表达式必须有空格但不能超出两个空格
     3.字符串必须用单引号， singlequote
     4.注释不能写在自定义字符串模板里，注释必须用此注释符里
--->
-<script>
-
-export default {
-  data () {
-    return {
-      msg: '第一次使用vue操作！',
-      title: 'frist user vuejs do demo',
-      addStyle: 'ulstyle',
-      items: [
+    items: [],
         {
           title: 'javascript',
           mark: '从入门到入门到再入门',
@@ -34,8 +25,29 @@ export default {
           mark: '闭包，原型，继承',
           isFinished: false
         }
-      ],
+    5.store 使用h5 localStorage 本地存储实现一个小功能
+      fetch 获取数据  save 保存数据
+      deep  实时更新数据操作
+-->
+<script>
+import Store from '../store.js'
+console.log(Store)
+export default {
+  data () {
+    return {
+      msg: '第一次使用vue操作！',
+      title: 'frist user vuejs do demo',
+      addStyle: 'ulstyle',
+      items: Store.fetch(),
       newArray: ''
+    }
+  },
+  watch: {
+    items: {
+      handler: function (items) {
+        Store.save(items)
+      },
+      deep: true
     }
   },
   methods: {
